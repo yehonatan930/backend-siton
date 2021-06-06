@@ -1,14 +1,13 @@
 <template>
-  <v-app>
-    <activitiesPage> </activitiesPage>
   <v-app id="app">
+    <activitiesPage> </activitiesPage>
     <Navbar></Navbar>
     <v-main> </v-main>
   </v-app>
 </template>
 
 <script>
-import ActivitiesPage from './views/ActivitiesPage';
+import ActivitiesPage from "./views/ActivitiesPage";
 import Navbar from "./components/Navbar";
 
 export default {
