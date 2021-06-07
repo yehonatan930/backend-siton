@@ -1,15 +1,17 @@
 <template>
   <v-app id="app">
-    <v-card>
-    <activitiesPage> </activitiesPage>
-    <Navbar></Navbar>
-    </v-card>
-    <v-main> </v-main>
+    <div class="d-flex justify-center">
+      <v-card width="1200" height="500" class="mt-10 rounded-xl">
+        <h1 class="display-4 d-flex justify-center" id="title">לוח פעילויות</h1>
+        <ActivitiesPage class="d-flex justify-center mr-15"> </ActivitiesPage>
+        <Navbar class="rounded-r-xl"></Navbar>
+      </v-card>
+    </div>
   </v-app>
 </template>
 
 <script>
-import ActivitiesPage from './views/ActivitiesPage';
+import ActivitiesPage from "./views/ActivitiesPage";
 import Navbar from "./components/Navbar";
 
 export default {
@@ -25,4 +27,9 @@ export default {
   }
 };
 </script>
-<style scoped></style>
+
+
+
+<style scoped>
+
+</style>
