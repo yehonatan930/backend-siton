@@ -4,7 +4,7 @@
       <v-card width="700" class="mt-5 rounded-xl">
         <v-form ref="form" v-model="valid" lazy-validation class="ma-4">
           <v-select
-            v-model="activity.kind"
+            v-model="activity.activity_type"
             :items="activityKinds"
             :rules="[v => !!v || 'צריך לבחור פעילות!']"
             label="סוג הפעולה"
@@ -84,7 +84,7 @@
           ></v-text-field>
 
           <v-text-field
-            v-model="activity.goal"
+            v-model="activity.activity_goal"
             :rules="[v => !!v || 'צריך להזין מטרת פעילות!']"
             label="מטרת הפעילות"
             required
@@ -92,7 +92,7 @@
           ></v-text-field>
 
           <v-text-field
-            v-model="activity.authorizer"
+            v-model="activity.activity_approver"
             :rules="[v => !!v || 'צריך להזין מאשר פעילות!']"
             label="מאשר הפעילות"
             required
@@ -147,9 +147,9 @@ export default {
       date: null,
       time: null,
       plannedForce: "",
-      goal: null,
-      authorizer: null,
-      kind: null,
+      activity_goal: null,
+      activity_approver: null,
+      activity_type: null,
       location: null
     },
 
@@ -160,7 +160,9 @@ export default {
 
     activityKinds: ["פטרול", "מארב", "מחסן רכבים"]
   }),
-
+  computed: {
+    
+  },
   methods: {
     submit() {},
     clear() {
@@ -168,16 +170,16 @@ export default {
         date: null,
         time: null,
         plannedForce: "",
-        goal: null,
-        authorizer: null,
-        kind: null,
+        activity_goal: null,
+        activity_approver: null,
+        activity_type: null,
         location: null
       };
     },
     close() {
       this.newActivity = false;
       this.$emit("newActivity", this.newActivity);
-    }
+    }, 
   },
   props: ["newActivity"]
 };

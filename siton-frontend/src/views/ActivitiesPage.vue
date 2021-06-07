@@ -29,30 +29,37 @@
             <div
               dir="rtl"
               v-for="(field, index) in this.fields"
-              :key="field.type"
+              :key="field.activity_type"
             >
               <v-card-text>
-                <h2>{{ field.type }}: {{ details[index].type }}</h2>
+                <h2>
+                  {{ field.activity_type }}: {{ activities[index].activity_type }}
+                </h2>
               </v-card-text>
               <v-card-text>
                 <h2>
-                  {{ field.scheduledTime }}: {{ details[index].scheduledTime }}
+                  {{ field.activity_time }}: {{ activities[index].activity_time }}
                 </h2>
               </v-card-text>
               <v-card-text>
                 <h2>
                   {{ field.scheduledPower }}:
-                  {{ details[index].scheduledPower }}
+                  {{ activities[index].scheduledPower }}
                 </h2>
               </v-card-text>
               <v-card-text>
-                <h2>{{ field.purpose }}: {{ details[index].purpose }}</h2>
+                <h2>
+                  {{ field.activity_goal }}: {{ activities[index].activity_goal }}
+                </h2>
               </v-card-text>
               <v-card-text>
-                <h2>{{ field.approval }}: {{ details[index].approval }}</h2>
+                <h2>
+                  {{ field.activity_approver }}:
+                  {{ activities[index].activity_approver }}
+                </h2>
               </v-card-text>
               <v-card-text>
-                <h2>{{ field.place }}: {{ details[index].place }}</h2>
+                <h2>{{ field.place }}: {{ activities[index].place }}</h2>
               </v-card-text>
             </div>
             <v-card-actions>
@@ -82,38 +89,48 @@
 <script>
 import Activity from "../components/Activity";
 import NewActivity from "../components/NewActivity";
+import axios from 'axios';
 
 export default {
   data() {
     return {
       newActivity: false,
-      activities: true,
       dialog: false,
       fields: [
         {
-          type: "סוג פעולה",
-          scheduledTime: "זמן מתוכנן לפעילות",
+          activity_type: "סוג פעולה",
+          activity_time: "זמן מתוכנן לפעילות",
           scheduledPower: "כוח מתוכנן",
-          purpose: "מטרת הפעילות",
-          approval: "אישור הפעילות",
+          activity_goal: "מטרת הפעילות",
+          activity_approver: "אישור הפעילות",
           place: "מיקום"
         }
       ],
-      details: [
-        {
-          type: "מארב",
-          scheduledTime: new Date().toLocaleString(),
-          scheduledPower: "ג'ק פרלטה, איימי סנטיאגו וג'ינה לינטי",
-          purpose: "מארב לתפיסת החשוד",
-          approval: "קפטן ריי הולט",
-          place: "276909,655437"
-        }
-      ]
+      // details: [
+      //   {
+      //     activity_type: "מארב",
+      //     activity_time: new Date().toLocaleString(),
+      //     scheduledPower: "ג'ק פרלטה, איימי סנטיאגו וג'ינה לינטי",
+      //     activity_goal: "מארב לתפיסת החשוד",
+      //     activity_approver: "קפטן ריי הולט",
+      //     place: "276909,655437"
+      //   }
+      // ],
+      activities: []
     };
   },
   components: {
     Activity,
     NewActivity
+  },
+  created: async function() {
+    this.activities = await axios.get('http://siton-backend-securityapp3.apps.openforce.openforce.biz/activities')
+        .then(function (response) {
+            return response.data;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
   },
   methods: {
     enterActivity() {
