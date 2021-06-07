@@ -74,6 +74,8 @@
 import Report from "../components/Report";
 
 export default {
+  name: "Reports",
+
   data() {
     return {
       dialog: false,
