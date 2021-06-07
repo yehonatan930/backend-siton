@@ -4,15 +4,23 @@
       <v-card width="700" height="300" class="mt-5 rounded-xl">
         <Activity @click.native="enterActivity()"> </Activity>
         <template>
-          <v-btn fab dark color="#3e4174" v-on:click="addNewActivity()">
+          <v-btn
+            bottom
+            absolute
+            left
+            fab
+            dark
+            color="#3e4174"
+            class="mb-10"
+            v-on:click="addNewActivity()"
+          >
             <v-icon dark>mdi-plus</v-icon>
           </v-btn>
         </template>
       </v-card>
       <div>
-        <v-dialog v-model="this.newActivity">
-          <NewActivity> </NewActivity>
-        </v-dialog>
+        <NewActivity :newActivity="this.newActivity" @newActivity="close">
+        </NewActivity>
         <v-dialog v-model="this.dialog" persistent max-width="500">
           <v-card>
             <v-card-title dir="rtl" class="headline">
@@ -115,8 +123,10 @@ export default {
       this.dialog = false;
     },
     addNewActivity() {
-      this.activities = false;
       this.newActivity = true;
+    },
+    close(closeDialog) {
+      this.newActivity = closeDialog;
     }
   }
 };
