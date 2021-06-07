@@ -3,11 +3,11 @@
     <v-list class="transparent mt-10">
       <v-list-item>
         <v-list-item-title>
-          <h1 class="display-2">Label 1</h1>
+          <h1 class="display-2">{{this.activity_type}} - {{this.activity_goal}}</h1>
         </v-list-item-title>
         <v-list-item-subtitle class="text-right"
           ><h2 class="display-2">
-            Details
+            {{this.activity_time}}
           </h2>
         </v-list-item-subtitle>
       </v-list-item>
@@ -17,7 +17,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+    props: ['activity_type', 'activity_goal', 'activity_time']
+};
 </script>
 
 <style>

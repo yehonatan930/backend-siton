@@ -1,9 +1,17 @@
 <template>
   <div>
     <h1 class="display-4 d-flex justify-center" id="title">לוח פעילויות</h1>
-    <div class="d-flex justify-center">
+    <div class="d-flex justify-center mr-">
       <v-card width="700" height="300" class="mt-5 rounded-xl">
-        <Activity @click.native="enterActivity()"> </Activity>
+        <div v-for="activity in this.activities" :key="activity.activity_type">
+          <Activity
+            :activity_type="activity.activity_type"
+            :activity_goal="activity.activity_goal"
+            :activity_time="activity.activity_time"
+            @click.native="enterActivity()"
+          >
+          </Activity>
+        </div>
         <template>
           <v-btn
             bottom
@@ -110,16 +118,6 @@ export default {
           place: "מיקום"
         }
       ],
-      // details: [
-      //   {
-      //     activity_type: "מארב",
-      //     activity_time: new Date().toLocaleString(),
-      //     scheduledPower: "ג'ק פרלטה, איימי סנטיאגו וג'ינה לינטי",
-      //     activity_goal: "מארב לתפיסת החשוד",
-      //     activity_approver: "קפטן ריי הולט",
-      //     place: "276909,655437"
-      //   }
-      // ],
       activities: []
     };
   },
