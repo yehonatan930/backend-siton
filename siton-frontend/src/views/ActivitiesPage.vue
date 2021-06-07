@@ -1,5 +1,7 @@
 <template>
   <div>
+    <h1 class="display-4 d-flex justify-center" id="title">פעילויות</h1>
+
     <div class="d-flex justify-center">
       <v-card width="700" class="mt-5 rounded-xl">
         <Activity @click.native="enterActivity()"> </Activity>
