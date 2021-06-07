@@ -1,7 +1,9 @@
 <template>
   <v-app id="app">
+    <v-card>
     <activitiesPage> </activitiesPage>
     <Navbar></Navbar>
+    </v-card>
     <v-main> </v-main>
   </v-app>
 </template>
