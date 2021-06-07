@@ -4,12 +4,6 @@
     <div class="d-flex justify-center">
       <v-card width="700" height="300" class="mt-5 rounded-xl">
         <Report @click.native="enterReport()"> </Report>
-
-        <v-card-actions>
-          <v-btn fab dark color="#3e4174">
-            <v-icon dark>mdi-plus</v-icon>
-          </v-btn>
-        </v-card-actions>
       </v-card>
       <div>
         <v-dialog v-model="this.dialog" persistent max-width="500">
