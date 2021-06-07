@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h1 class="display-4 d-flex justify-center" id="title">לוח פעילויות</h1>
+    <h1 class="display-4 d-flex justify-center" id="title">דיווחים</h1>
     <div class="d-flex justify-center">
       <v-card width="700" height="300" class="mt-5 rounded-xl">
-        <Activity @click.native="enterActivity()"> </Activity>
+        <Report @click.native="enterReport()"> </Report>
 
         <v-card-actions>
           <v-btn fab dark color="#3e4174">
@@ -59,7 +59,7 @@
                 color="blue darken-4"
                 class="font-weight-bold"
                 text
-                @click="returnActivities()"
+                @click="returnReports()"
                 ><h2>חזור ללוח פעילויות</h2></v-btn
               >
             </v-card-actions>
@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import Activity from "../components/Activity";
+import Report from "../components/Report";
 
 export default {
   data() {
@@ -79,34 +79,34 @@ export default {
       dialog: false,
       fields: [
         {
-          type: "סוג פעולה",
-          scheduledTime: "זמן מתוכנן לפעילות",
-          scheduledPower: "כוח מתוכנן",
-          purpose: "מטרת הפעילות",
-          approval: "אישור הפעילות",
-          place: "מיקום"
+          type: "סוג אירוע",
+          weapon: "סוג נשק",
+          casualties: "נפגעים",
+          eventTime: "זמן האירוע",
+          reportTime: "זמן הדיווח",
+          reporter: "המדווח"
         }
       ],
       details: [
         {
-          type: "מארב",
-          scheduledTime: new Date().toLocaleString(),
-          scheduledPower: "ג'ק פרלטה, איימי סנטיאגו וג'ינה לינטי",
-          purpose: "מארב לתפיסת החשוד",
-          approval: "קפטן ריי הולט",
-          place: "276909,655437"
+          type: "דקירה",
+          weapon: "סכין",
+          casualties: "2 אזרחים",
+          eventTime: "08/09/2021 14:30",
+          reportTime: "08/09/2021 14:35",
+          reporter: "נבו בונה"
         }
       ]
     };
   },
   components: {
-    Activity
+    Report
   },
   methods: {
-    enterActivity() {
+    enterReport() {
       this.dialog = true;
     },
-    returnActivities() {
+    returnReports() {
       this.dialog = false;
     }
   }
