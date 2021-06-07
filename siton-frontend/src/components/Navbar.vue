@@ -8,7 +8,7 @@
             src="https://randomuser.me/api/portraits/women/81.jpg"
           />
         </v-list-item-avatar>
-        <v-list-item-title class="font-weight-bold">סיטון</v-list-item-title>
+        <v-list-item-title class="font-weight-bold"><h1>סיטון</h1></v-list-item-title>
       </v-list-item-content>
     </v-list-item>
 
@@ -23,7 +23,7 @@
           :href="option.link"
         >
           <v-list-item-content class="text-right">
-            <v-list-item-title>{{ option.title }}</v-list-item-title>
+            <v-list-item-title><h3>{{ option.title }} </h3></v-list-item-title>
           </v-list-item-content>
           <v-list-item-icon>
             <v-icon>{{ option.icon }}</v-icon>

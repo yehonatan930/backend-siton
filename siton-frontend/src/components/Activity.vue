@@ -3,8 +3,8 @@
     <v-list class="transparent mt-10">
       <v-list-item>
         <v-list-item-title>
-          <h1 class="display-2">Label 1</h1></v-list-item-title
-        >
+          <h1 class="display-2">Label 1</h1>
+        </v-list-item-title>
         <v-list-item-subtitle class="text-right"
           ><h2 class="display-2">
             Details
