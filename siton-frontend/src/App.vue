@@ -26,4 +26,13 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style>
+@font-face {
+  font-family: "Heebo";
+  src: url("./assets/Heebo-VariableFont_wght.ttf");
+}
+
+#app {
+  font-family: "Heebo" !important;
+}
+</style>

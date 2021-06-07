@@ -34,12 +34,14 @@
             >
               <v-card-text>
                 <h2>
-                  {{ field.activity_type }}: {{ activities[index].activity_type }}
+                  {{ field.activity_type }}:
+                  {{ activities[index].activity_type }}
                 </h2>
               </v-card-text>
               <v-card-text>
                 <h2>
-                  {{ field.activity_time }}: {{ activities[index].activity_time }}
+                  {{ field.activity_time }}:
+                  {{ activities[index].activity_time }}
                 </h2>
               </v-card-text>
               <v-card-text>
@@ -50,7 +52,8 @@
               </v-card-text>
               <v-card-text>
                 <h2>
-                  {{ field.activity_goal }}: {{ activities[index].activity_goal }}
+                  {{ field.activity_goal }}:
+                  {{ activities[index].activity_goal }}
                 </h2>
               </v-card-text>
               <v-card-text>
@@ -90,7 +93,7 @@
 <script>
 import Activity from "../components/Activity";
 import NewActivity from "../components/NewActivity";
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   data() {
@@ -125,13 +128,16 @@ export default {
     NewActivity
   },
   created: async function() {
-    this.activities = await axios.get('http://siton-backend-securityapp3.apps.openforce.openforce.biz/activities')
-        .then(function (response) {
-            return response.data;
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+    this.activities = await axios
+      .get(
+        "http://siton-backend-securityapp3.apps.openforce.openforce.biz/activities"
+      )
+      .then(function(response) {
+        return response.data;
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   },
   methods: {
     enterActivity() {

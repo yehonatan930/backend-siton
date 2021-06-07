@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1 class="display-4 d-flex justify-center" id="title">דיווחים</h1>
+  <div id="app">
+    <h1 class="font display-4 d-flex justify-center" id="title">דיווחים</h1>
     <div class="d-flex justify-center">
       <v-card width="700" height="300" class="mt-5 rounded-xl">
         <Report @click.native="enterReport()"> </Report>
@@ -46,15 +46,8 @@
                 color="blue darken-4"
                 class="font-weight-bold"
                 text
-                @click="this.dialog = false"
-                ><h2>הוצא פעולה לפועל</h2></v-btn
-              >
-              <v-btn
-                color="blue darken-4"
-                class="font-weight-bold"
-                text
                 @click="returnReports()"
-                ><h2>חזור ללוח פעילויות</h2></v-btn
+                ><h2>חזור ללוח דיווחים</h2></v-btn
               >
             </v-card-actions>
           </v-card>
