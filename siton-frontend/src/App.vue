@@ -3,7 +3,7 @@
     <div class="d-flex justify-center">
       <v-card width="1200" height="500" class="mt-10 rounded-xl">
         <h1 class="display-4 d-flex justify-center" id="title">לוח פעילויות</h1>
-        <ActivitiesPage  class="d-flex justify-space-around"> </ActivitiesPage>
+        <ActivitiesPage class="d-flex justify-center mr-15"> </ActivitiesPage>
         <Navbar class="rounded-r-xl"></Navbar>
       </v-card>
     </div>
