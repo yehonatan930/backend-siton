@@ -3,14 +3,16 @@
     <div class="d-flex justify-center">
       <v-card width="700" height="300" class="mt-5 rounded-xl">
         <Activity @click.native="enterActivity()"> </Activity>
-
-        <v-card-actions>
-          <v-btn fab dark color="#3e4174">
+        <template>
+          <v-btn fab dark color="#3e4174" v-on:click="addNewActivity()">
             <v-icon dark>mdi-plus</v-icon>
           </v-btn>
-        </v-card-actions>
+        </template>
       </v-card>
       <div>
+        <v-dialog v-model="this.newActivity">
+          <NewActivity> </NewActivity>
+        </v-dialog>
         <v-dialog v-model="this.dialog" persistent max-width="500">
           <v-card>
             <v-card-title dir="rtl" class="headline">
@@ -71,10 +73,13 @@
 
 <script>
 import Activity from "../components/Activity";
+import NewActivity from "../components/NewActivity";
 
 export default {
   data() {
     return {
+      newActivity: false,
+      activities: true,
       dialog: false,
       fields: [
         {
@@ -99,7 +104,8 @@ export default {
     };
   },
   components: {
-    Activity
+    Activity,
+    NewActivity
   },
   methods: {
     enterActivity() {
@@ -107,6 +113,10 @@ export default {
     },
     returnActivities() {
       this.dialog = false;
+    },
+    addNewActivity() {
+      this.activities = false;
+      this.newActivity = true;
     }
   }
 };

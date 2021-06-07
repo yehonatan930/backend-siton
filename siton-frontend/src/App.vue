@@ -3,7 +3,12 @@
     <div class="d-flex justify-center">
       <v-card width="1200" height="500" class="mt-10 rounded-xl">
         <h1 class="display-4 d-flex justify-center" id="title">לוח פעילויות</h1>
-        <ActivitiesPage class="d-flex justify-center mr-15"> </ActivitiesPage>
+        <ActivitiesPage
+          v-moel="this.activities"
+          class="d-flex justify-center mr-15"
+        >
+        </ActivitiesPage>
+
         <Navbar class="rounded-r-xl"></Navbar>
       </v-card>
     </div>
@@ -24,12 +29,9 @@ export default {
 
   data() {
     return {};
-  }
+  },
+  methods: {}
 };
 </script>
 
-
-
-<style scoped>
-
-</style>
+<style scoped></style>
