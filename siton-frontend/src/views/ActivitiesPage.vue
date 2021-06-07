@@ -1,9 +1,17 @@
 <template>
   <div>
     <h1 class="display-4 d-flex justify-center" id="title">לוח פעילויות</h1>
-    <div class="d-flex justify-center">
+    <div class="d-flex justify-center mr-">
       <v-card width="700" height="300" class="mt-5 rounded-xl">
-        <Activity @click.native="enterActivity()"> </Activity>
+        <div v-for="activity in this.activities" :key="activity.activity_type">
+          <Activity
+            :activity_type="activity.activity_type"
+            :activity_goal="activity.activity_goal"
+            :activity_time="activity.activity_time"
+            @click.native="enterActivity()"
+          >
+          </Activity>
+        </div>
         <template>
           <v-btn
             bottom
@@ -34,12 +42,14 @@
             >
               <v-card-text>
                 <h2>
-                  {{ field.activity_type }}: {{ activities[index].activity_type }}
+                  {{ field.activity_type }}:
+                  {{ activities[index].activity_type }}
                 </h2>
               </v-card-text>
               <v-card-text>
                 <h2>
-                  {{ field.activity_time }}: {{ activities[index].activity_time }}
+                  {{ field.activity_time }}:
+                  {{ activities[index].activity_time }}
                 </h2>
               </v-card-text>
               <v-card-text>
@@ -50,7 +60,8 @@
               </v-card-text>
               <v-card-text>
                 <h2>
-                  {{ field.activity_goal }}: {{ activities[index].activity_goal }}
+                  {{ field.activity_goal }}:
+                  {{ activities[index].activity_goal }}
                 </h2>
               </v-card-text>
               <v-card-text>
@@ -90,7 +101,7 @@
 <script>
 import Activity from "../components/Activity";
 import NewActivity from "../components/NewActivity";
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   data() {
@@ -107,16 +118,6 @@ export default {
           place: "מיקום"
         }
       ],
-      // details: [
-      //   {
-      //     activity_type: "מארב",
-      //     activity_time: new Date().toLocaleString(),
-      //     scheduledPower: "ג'ק פרלטה, איימי סנטיאגו וג'ינה לינטי",
-      //     activity_goal: "מארב לתפיסת החשוד",
-      //     activity_approver: "קפטן ריי הולט",
-      //     place: "276909,655437"
-      //   }
-      // ],
       activities: []
     };
   },
@@ -125,13 +126,16 @@ export default {
     NewActivity
   },
   created: async function() {
-    this.activities = await axios.get('http://siton-backend-securityapp3.apps.openforce.openforce.biz/activities')
-        .then(function (response) {
-            return response.data;
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+    this.activities = await axios
+      .get(
+        "http://siton-backend-securityapp3.apps.openforce.openforce.biz/activities"
+      )
+      .then(function(response) {
+        return response.data;
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   },
   methods: {
     enterActivity() {
