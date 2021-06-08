@@ -126,10 +126,9 @@
             </v-btn>
             <v-btn
               class="mb-2 white--text"
-              type="submit"
               :disabled="!valid"
               color="#3e4174"
-              @click="addActivity"
+              @click="addActivity()"
             >
               הוסף פעילות
             </v-btn>
@@ -171,22 +170,28 @@ export default {
 
     activityKinds: ["פטרול", "מארב", "מחסן רכבים"]
   }),
-  computed: {
-  },
+  computed: {},
   methods: {
+    close() {
+      this.newActivity = false;
+      this.$emit("newActivity", this.newActivity);
+    },
     async addActivity() {
+      this.close();
       await axios
         .post(
           "http://siton-backend-securityapp3.apps.openforce.openforce.biz/activities",
           {
-            activity_name: this.activity.activity_name,
-            activity_type:
-              this.activityKinds.indexOf(this.activity.activity_type) + 1,
-            activity_time: new Date(this.activity.date),
-            scheduledPower: this.activity.plannedForce,
-            activity_goal: this.activity.activity_goal,
-            activity_approver: this.activity.activity_approver,
-            status_name: 1
+            activity: {
+              activity_name: this.activity.activity_name,
+              activity_type:
+                this.activityKinds.indexOf(this.activity.activity_type) + 1,
+              activity_time: new Date(this.activity.date),
+              scheduledPower: this.activity.plannedForce.split(","),
+              activity_goal: this.activity.activity_goal,
+              activity_approver: this.activity.activity_approver,
+              status: 1
+            }
           }
         )
         .then(function(response) {
@@ -207,10 +212,6 @@ export default {
         activity_type: null,
         location: null
       };
-    },
-    close() {
-      this.newActivity = false;
-      this.$emit("newActivity", this.newActivity);
     }
   },
   props: ["newActivity"]

@@ -10,7 +10,7 @@
           :item-height="150"
           height="300"
         > -->
-        <div v-for="activity in this.activities" :key="activity.activity_name">
+        <div v-for="activity in this.activities" :key="activity.id">
           <Activity
             :activity_name="activity.activity_name"
             :activity_time="
@@ -139,16 +139,7 @@ export default {
     NewActivity
   },
   created: async function() {
-    this.activities = await axios
-      .get(
-        "http://siton-backend-securityapp3.apps.openforce.openforce.biz/activities"
-      )
-      .then(function(response) {
-        return response.data;
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+    await this.getActivities();
   },
   methods: {
     async enterActivity(activity) {
@@ -161,8 +152,21 @@ export default {
     addNewActivity() {
       this.newActivity = true;
     },
-    close(closeDialog) {
+    async getActivities() {
+      this.activities = await axios
+        .get(
+          "http://siton-backend-securityapp3.apps.openforce.openforce.biz/activities"
+        )
+        .then(function(response) {
+          return response.data;
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
+    async close(closeDialog) {
       this.newActivity = closeDialog;
+      await this.getActivities();
     }
   }
 };
