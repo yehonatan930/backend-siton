@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <v-list class="transparent mt-10">
-      <v-list-item>
+  <div height="150">
+    <v-list class="transparent mt-10" >
+      <v-list-item >
         <v-list-item-title>
-          <h1 class="display-2">{{this.activity_type}} - {{this.activity_goal}}</h1>
+          <h2 class="text-right">{{this.activity_name}}</h2>
         </v-list-item-title>
-        <v-list-item-subtitle class="text-right"
-          ><h2 class="display-2">
+        <v-list-item-subtitle class="text-left"
+          ><h2>
             {{this.activity_time}}
           </h2>
         </v-list-item-subtitle>
@@ -18,7 +18,7 @@
 
 <script>
 export default {
-    props: ['activity_type', 'activity_goal', 'activity_time']
+    props: ['activity_name', 'activity_time']
 };
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="display-4 d-flex justify-center" id="title">דיווחים</h1>
+    <h1 class="display-4 d-flex justify-center mr-15" id="title">דיווחים</h1>
     <div class="d-flex justify-center mr-15">
       <v-card width="700" height="300" class="mt-5 rounded-xl">
         <Report @click.native="enterReport()"> </Report>
