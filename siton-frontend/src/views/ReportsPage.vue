@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="display-4 d-flex justify-center" id="title">
+    <h1 class="display-3 d-flex justify-center" id="title">
       דיווחים
     </h1>
     <div class="d-flex justify-center">

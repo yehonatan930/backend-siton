@@ -20,7 +20,6 @@
 <script>
 import Navbar from "./components/Navbar";
 
-
 export default {
   name: "App",
 
@@ -50,7 +49,15 @@ export default {
   font-family: "Heebo" !important;
 }
 
+.v-application .display-3 {
+  font-family: "Heebo" !important;
+}
+
 .v-application .display-2 {
+  font-family: "Heebo" !important;
+}
+
+.v-application .display-1 {
   font-family: "Heebo" !important;
 }
 
@@ -61,5 +68,6 @@ export default {
 
 .view {
   margin-right: 18vw;
+  padding-top: 5vh;
 }
 </style>

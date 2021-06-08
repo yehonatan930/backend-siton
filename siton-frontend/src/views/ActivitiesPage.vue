@@ -1,53 +1,57 @@
 <template>
   <div>
-    <h1 class="display-4 d-flex justify-center mr-15" id="title">
+    <h1 class="display-3 d-flex justify-center mr-15" id="title">
       לוח פעילויות
     </h1>
-    <div class="d-flex justify-center mr-15">
-      <v-card class="mt-5 rounded-xl inner-card" elevation="1">
-        <!-- <v-virtual-scroll
-          :items="this.activities"
-          :item-height="150"
-          height="300"
-        > -->
-        <div v-for="activity in this.activities" :key="activity.id">
-          <Activity
-            :activity_name="activity.activity_name"
-            :activity_time="
-              new Date(activity.activity_time).toLocaleDateString()
-            "
-            @click.native="enterActivity(activity)"
-          >
-          </Activity>
+    <div class="d-flex justify-center">
+      <v-card class="mt-5 rounded-xl inner-card" elevation="1" scrollable>
+        <div class="scrollable">
+          <div v-for="activity in this.activities" :key="activity.id">
+            <Activity
+              :activity_name="activity.activity_name"
+              :activity_time="
+                new Date(activity.activity_time).toLocaleDateString()
+              "
+              @click.native="enterActivity(activity)"
+            >
+            </Activity>
+          </div>
         </div>
         <template>
-          <v-btn
-            bottom
-            absolute
-            left
-            fab
-            dark
-            color="#3e4174"
-            class="mb-10"
-            v-on:click="addNewActivity()"
-          >
-            <v-icon dark>mdi-plus</v-icon>
-          </v-btn>
+          <div class="text-center">
+            <v-btn
+              x-large
+              bottom
+              absolute
+              fab
+              dark
+              color="#3e4174"
+              v-on:click="addNewActivity()"
+            >
+              <v-icon dark>mdi-plus</v-icon>
+            </v-btn>
+          </div>
         </template>
-        <!-- </v-virtual-scroll> -->
       </v-card>
       <div>
         <NewActivity :newActivity="this.newActivity" @newActivity="close">
         </NewActivity>
-        <v-dialog v-model="this.dialog" persistent max-width="500">
+        <v-dialog
+          v-model="this.dialog"
+          max-width="800"
+          height="800"
+          persistent
+          class="dialog"
+        >
           <v-card>
             <div
+              class="ma-5"
               dir="rtl"
               v-for="field in this.fields"
               :key="field.activity_name"
             >
               <v-card-title dir="rtl" class="headline">
-                <h3 id="titleDialog">
+                <h3 id="titleDialog" class="display-1">
                   {{ activityDialog.activity_name }}
                 </h3></v-card-title
               >
@@ -89,19 +93,28 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
-                color="blue darken-4"
-                class="font-weight-bold"
-                text
-                @click="this.dialog = false"
-                ><h2>הוצא פעולה לפועל</h2></v-btn
-              >
-              <v-btn
-                color="blue darken-4"
-                class="font-weight-bold"
-                text
+                large
+                left
+                bottom
+                fab
+                dark
+                color="#3e4174"
                 @click="returnActivities()"
-                ><h2>חזור ללוח פעילויות</h2></v-btn
               >
+                <v-icon dark>mdi-gavel</v-icon>
+              </v-btn>
+
+              <v-btn
+                large
+                bottom
+                left
+                fab
+                dark
+                color="#3e4174"
+                @click="returnActivities()"
+              >
+                <v-icon dark>mdi-arrow-left</v-icon>
+              </v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -180,5 +193,10 @@ export default {
 .inner-card {
   width: 60vw;
   height: 65vh;
+}
+
+.scrollable {
+  overflow-y: scroll;
+  height: 55vh;
 }
 </style>
