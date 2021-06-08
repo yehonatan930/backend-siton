@@ -1,36 +1,51 @@
 <template>
   <v-app id="app">
-    <div class="d-flex justify-center">
-      <div class="align-center">
-        <v-card
-          id="card"
-          width="1700"
-          height="800"
-          class="rounded-xl"
-          elevation="24"
-        >
-          <router-view class="view" />
-          <Navbar class="rounded-r-xl"></Navbar>
-        </v-card>
+    <v-main>
+      <div class="d-flex justify-center">
+        <div v-if="login">
+          <LogInPage @logIn="logIn"></LogInPage>
+        </div>
+        <div v-else>
+          <v-card
+            id="card"
+            width="1700"
+            height="800"
+            class="rounded-xl"
+            elevation="24"
+          >
+            <router-view class="view" />
+            <Navbar class="rounded-r-xl"></Navbar>
+          </v-card>
+        </div>
       </div>
-    </div>
+    </v-main>
   </v-app>
 </template>
 
 <script>
 import Navbar from "./components/Navbar";
+import LogInPage from "./views/LogInPage";
 
 export default {
   name: "App",
 
   components: {
-    Navbar
+    Navbar,
+    LogInPage
   },
 
   data() {
-    return {};
+    return {
+      login: true
+    };
   },
-  methods: {}
+
+  methods: {
+    logIn() {
+      console.log(2222);
+      this.login = false;
+    }
+  }
 };
 </script>
 
