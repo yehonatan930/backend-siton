@@ -5,14 +5,18 @@
     </h1>
     <div class="d-flex justify-center">
       <v-card class="mt-5 rounded-xl inner-card" elevation="1">
-        <div v-for="report in this.reports" :key="report.id">
-          <Report
-            :event_name="report.event_name"
-            :event_time_date="new Date(report.event_time).toLocaleDateString()"
-            :event_time="new Date(report.event_time).toLocaleTimeString()"
-            @click.native="enterReport(report)"
-          >
-          </Report>
+        <div class="scrollable">
+          <div v-for="report in this.reports" :key="report.id">
+            <Report
+              :event_name="report.event_name"
+              :event_time_date="
+                new Date(report.event_time).toLocaleDateString()
+              "
+              :event_time="new Date(report.event_time).toLocaleTimeString()"
+              @click.native="enterReport(report)"
+            >
+            </Report>
+          </div>
         </div>
       </v-card>
       <div>
@@ -24,7 +28,7 @@
               :key="field.activity_name"
             >
               <v-card-title class="headline">
-                <h3 id="titleDialog" class="display-1">
+                <h3 id="titleDialog" class="display-1 font-weight-bold">
                   {{ reportDialog.event_name }}
                 </h3>
               </v-card-title>
@@ -146,6 +150,11 @@ export default {
 
 .inner-card {
   width: 60vw;
+  height: 65vh;
+}
+
+.scrollable {
+  overflow-y: scroll;
   height: 65vh;
 }
 </style>

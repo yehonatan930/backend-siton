@@ -4,7 +4,7 @@
       לוח פעילויות
     </h1>
     <div class="d-flex justify-center">
-      <v-card class="mt-5 rounded-xl inner-card" elevation="1" scrollable>
+      <v-card class="mt-5 rounded-xl inner-card" elevation="1">
         <div class="scrollable">
           <div v-for="activity in this.activities" :key="activity.id">
             <Activity
@@ -34,7 +34,7 @@
         </template>
       </v-card>
       <div>
-        <NewActivity :newActivity="this.newActivity" @newActivity="close">
+        <NewActivity :newActivity="this.newActivity" @newActivity="close()" @activityToAdd="addToList()">
         </NewActivity>
         <v-dialog v-model="this.dialog" max-width="800" persistent>
           <v-card>
@@ -59,12 +59,13 @@
                 <h2>
                   {{ field.activity_time }}:
                   {{ activityDialog.activity_time }}
+                  {{ activityDialog.activity_time }}
                 </h2>
               </v-card-text>
               <v-card-text>
                 <h2 v-if="activityDialog.scheduledPower">
                   {{ field.scheduledPower }}:
-                  {{ activityDialog.scheduledPower}}
+                  {{ activityDialog.scheduledPower }}
                 </h2>
                 <h2 v-else>
                   {{ field.scheduledPower }}:
@@ -153,7 +154,7 @@ export default {
     Activity,
     NewActivity
   },
-  created: async function() {
+  mounted: async function() {
     await this.getActivities();
   },
   methods: {
@@ -179,9 +180,12 @@ export default {
           console.log(error);
         });
     },
-    async close(closeDialog) {
-      this.newActivity = closeDialog;
+    async close() {
+      this.newActivity = false;
       await this.getActivities();
+    },
+    addToList(activity) {
+      this.activities.push(activity);
     }
   }
 };
@@ -199,6 +203,6 @@ export default {
 
 .scrollable {
   overflow-y: scroll;
-  height: 55vh;
+  height: 65vh;
 }
 </style>

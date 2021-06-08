@@ -197,7 +197,7 @@ export default {
           }
         )
         .then(function(response) {
-          return response.data;
+          this.$emit("activityToAdd", response.data);
         })
         .catch(function(error) {
           console.log(error);
