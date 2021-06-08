@@ -46,15 +46,8 @@
                 color="blue darken-4"
                 class="font-weight-bold"
                 text
-                @click="this.dialog = false"
-                ><h2>הוצא פעולה לפועל</h2></v-btn
-              >
-              <v-btn
-                color="blue darken-4"
-                class="font-weight-bold"
-                text
                 @click="returnReports()"
-                ><h2>חזור ללוח פעילויות</h2></v-btn
+                ><h2>חזור ללוח דיווחים</h2></v-btn
               >
             </v-card-actions>
           </v-card>
