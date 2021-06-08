@@ -3,11 +3,11 @@
     <v-list class="transparent mt-10">
       <v-list-item>
         <v-list-item-title>
-          <h1 class="display-2">Label 1</h1>
+          <h2 class="text-right">{{this.event_name}}</h2>
         </v-list-item-title>
-        <v-list-item-subtitle class="text-right"
-          ><h2 class="display-2">
-            Details
+        <v-list-item-subtitle class="text-left"
+          ><h2>
+            {{this.event_time_date}} {{this.event_time}}
           </h2>
         </v-list-item-subtitle>
       </v-list-item>
@@ -17,7 +17,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: ['event_name', 'event_time_date', 'event_time']
+};
 </script>
 
 <style>

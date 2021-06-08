@@ -5,11 +5,6 @@
     </h1>
     <div class="d-flex justify-center mr-15">
       <v-card class="mt-5 rounded-xl inner-card" elevation="1">
-        <!-- <v-virtual-scroll
-          :items="this.activities"
-          :item-height="150"
-          height="300"
-        > -->
         <div v-for="activity in this.activities" :key="activity.id">
           <Activity
             :activity_name="activity.activity_name"
@@ -34,7 +29,6 @@
             <v-icon dark>mdi-plus</v-icon>
           </v-btn>
         </template>
-        <!-- </v-virtual-scroll> -->
       </v-card>
       <div>
         <NewActivity :newActivity="this.newActivity" @newActivity="close">
