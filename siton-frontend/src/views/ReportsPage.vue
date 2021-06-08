@@ -1,45 +1,66 @@
 <template>
   <div>
     <h1 class="display-3 d-flex justify-center" id="title">
-      דיווחים
+      לוח דיווחים
     </h1>
-    <div class="d-flex justify-center">
+    <div class="d-flex justify-center mr-15">
       <v-card class="mt-5 rounded-xl inner-card" elevation="1">
-        <Report @click.native="enterReport()"> </Report>
+        <div v-for="report in this.reports" :key="report.id">
+          <Report
+            :event_name="report.event_name"
+            :event_time_date="new Date(report.event_time).toLocaleDateString()"
+            :event_time="new Date(report.event_time).toLocaleTimeString()"
+            @click.native="enterReport(report)"
+          >
+          </Report>
+        </div>
       </v-card>
       <div>
         <v-dialog v-model="this.dialog" persistent max-width="500">
           <v-card>
-            <v-card-title dir="rtl" class="headline">
-              <h2 id="titleDialog">Label 1</h2></v-card-title
-            >
             <div
               dir="rtl"
-              v-for="(field, index) in this.fields"
-              :key="field.type"
+              v-for="field in this.fields"
+              :key="field.activity_name"
             >
-              <v-card-text>
-                <h2>{{ field.type }}: {{ details[index].type }}</h2>
-              </v-card-text>
+              <v-card-title dir="rtl" class="headline">
+                <h3 id="titleDialog">
+                  {{ reportDialog.event_name }}
+                </h3></v-card-title
+              >
+
               <v-card-text>
                 <h2>
-                  {{ field.scheduledTime }}: {{ details[index].scheduledTime }}
+                  {{ field.type }}:
+                  {{ reportDialog.event_type }}
                 </h2>
               </v-card-text>
               <v-card-text>
                 <h2>
-                  {{ field.scheduledPower }}:
-                  {{ details[index].scheduledPower }}
+                  {{ field.eventTime }}:
+                  {{ reportDialog.event_time }}
                 </h2>
               </v-card-text>
               <v-card-text>
-                <h2>{{ field.purpose }}: {{ details[index].purpose }}</h2>
+                <h2>
+                  {{ field.reportTime }}:
+                  {{ reportDialog.report_time }}
+                </h2>
               </v-card-text>
               <v-card-text>
-                <h2>{{ field.approval }}: {{ details[index].approval }}</h2>
+                <h2>
+                  {{ field.casualties }}:
+                  {{ reportDialog.activity_goal }}
+                </h2>
               </v-card-text>
               <v-card-text>
-                <h2>{{ field.place }}: {{ details[index].place }}</h2>
+                <h2>
+                  {{ field.weapon }}:
+                  {{ reportDialog.activity_approver }}
+                </h2>
+              </v-card-text>
+              <v-card-text>
+                <h2>{{ field.reporter }}: {{ reportDialog.user_name }}</h2>
               </v-card-text>
             </div>
             <v-card-actions>
@@ -49,7 +70,7 @@
                 class="font-weight-bold"
                 text
                 @click="returnReports()"
-                ><h2>חזור ללוח דיווחים</h2></v-btn
+                ><h2>סגור</h2></v-btn
               >
             </v-card-actions>
           </v-card>
@@ -61,12 +82,14 @@
 
 <script>
 import Report from "../components/Report";
+import axios from "axios";
 
 export default {
   name: "Reports",
 
   data() {
     return {
+      reportDialog: {},
       dialog: false,
       fields: [
         {
@@ -78,27 +101,34 @@ export default {
           reporter: "המדווח"
         }
       ],
-      details: [
-        {
-          type: "דקירה",
-          weapon: "סכין",
-          casualties: "2 אזרחים",
-          eventTime: "08/09/2021 14:30",
-          reportTime: "08/09/2021 14:35",
-          reporter: "נבו בונה"
-        }
-      ]
+      reports: []
     };
+  },
+  created: async function() {
+    await this.getReports();
   },
   components: {
     Report
   },
   methods: {
-    enterReport() {
+    enterReport(report) {
       this.dialog = true;
+      this.reportDialog = report;
     },
     returnReports() {
       this.dialog = false;
+    },
+    async getReports() {
+      this.reports = await axios
+        .get(
+          "http://siton-backend-securityapp3.apps.openforce.openforce.biz/reports"
+        )
+        .then(function(response) {
+          return response.data;
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     }
   }
 };

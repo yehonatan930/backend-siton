@@ -118,7 +118,7 @@
           ></v-text-field>
           <v-flex class="text-left">
             <v-btn
-              @click="close"
+              @click="close()"
               color="#040848"
               class="ml-4 mr-4 mb-2 white--text"
             >
@@ -134,7 +134,7 @@
             </v-btn>
 
             <v-btn
-              @click="clear"
+              @click="clear()"
               color="#3e4174"
               class="ml-4 mr-4 mb-2 white--text"
             >
