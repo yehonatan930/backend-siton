@@ -3,6 +3,13 @@
     <v-dialog persistent v-model="this.newActivity" width="700">
       <v-card width="700" class="mt-5 rounded-xl">
         <v-form ref="form" v-model="valid" lazy-validation class="ma-4">
+          <v-text-field
+            v-model="activity.activity_name"
+            :rules="[v => !!v || 'צריך להזין שם פעולה!']"
+            label="שם הפעולה"
+            required
+            clearable
+          ></v-text-field>
           <v-select
             v-model="activity.activity_type"
             :items="activityKinds"
@@ -122,6 +129,7 @@
               type="submit"
               :disabled="!valid"
               color="#3e4174"
+              @click="addActivity"
             >
               הוסף פעילות
             </v-btn>
@@ -141,9 +149,12 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data: () => ({
     activity: {
+      name: null,
       date: null,
       time: null,
       plannedForce: "",
@@ -161,12 +172,33 @@ export default {
     activityKinds: ["פטרול", "מארב", "מחסן רכבים"]
   }),
   computed: {
-    
   },
   methods: {
-    submit() {},
+    async addActivity() {
+      await axios
+        .post(
+          "http://siton-backend-securityapp3.apps.openforce.openforce.biz/activities",
+          {
+            activity_name: this.activity.activity_name,
+            activity_type:
+              this.activityKinds.indexOf(this.activity.activity_type) + 1,
+            activity_time: new Date(this.activity.date),
+            scheduledPower: this.activity.plannedForce,
+            activity_goal: this.activity.activity_goal,
+            activity_approver: this.activity.activity_approver,
+            status_name: 1
+          }
+        )
+        .then(function(response) {
+          return response.data;
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
     clear() {
       this.activity = {
+        name: null,
         date: null,
         time: null,
         plannedForce: "",
@@ -179,7 +211,7 @@ export default {
     close() {
       this.newActivity = false;
       this.$emit("newActivity", this.newActivity);
-    }, 
+    }
   },
   props: ["newActivity"]
 };

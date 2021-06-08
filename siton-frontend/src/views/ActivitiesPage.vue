@@ -1,14 +1,22 @@
 <template>
   <div>
-    <h1 class="display-4 d-flex justify-center" id="title">לוח פעילויות</h1>
-    <div class="d-flex justify-center mr-">
+    <h1 class="display-4 d-flex justify-center mr-15" id="title">
+      לוח פעילויות
+    </h1>
+    <div class="d-flex justify-center mr-15">
       <v-card width="700" height="300" class="mt-5 rounded-xl">
-        <div v-for="activity in this.activities" :key="activity.activity_type">
+        <!-- <v-virtual-scroll
+          :items="this.activities"
+          :item-height="150"
+          height="300"
+        > -->
+        <div v-for="activity in this.activities" :key="activity.activity_name">
           <Activity
-            :activity_type="activity.activity_type"
-            :activity_goal="activity.activity_goal"
-            :activity_time="activity.activity_time"
-            @click.native="enterActivity()"
+            :activity_name="activity.activity_name"
+            :activity_time="
+              new Date(activity.activity_time).toLocaleDateString()
+            "
+            @click.native="enterActivity(activity)"
           >
           </Activity>
         </div>
@@ -26,52 +34,56 @@
             <v-icon dark>mdi-plus</v-icon>
           </v-btn>
         </template>
+        <!-- </v-virtual-scroll> -->
       </v-card>
       <div>
         <NewActivity :newActivity="this.newActivity" @newActivity="close">
         </NewActivity>
         <v-dialog v-model="this.dialog" persistent max-width="500">
           <v-card>
-            <v-card-title dir="rtl" class="headline">
-              <h2 id="titleDialog">Label 1</h2></v-card-title
-            >
             <div
               dir="rtl"
-              v-for="(field, index) in this.fields"
-              :key="field.activity_type"
+              v-for="field in this.fields"
+              :key="field.activity_name"
             >
+              <v-card-title dir="rtl" class="headline">
+                <h3 id="titleDialog">
+                  {{ activityDialog.activity_name }}
+                </h3></v-card-title
+              >
+
               <v-card-text>
                 <h2>
                   {{ field.activity_type }}:
-                  {{ activities[index].activity_type }}
+                  {{ activityDialog.activity_type }}
                 </h2>
               </v-card-text>
               <v-card-text>
                 <h2>
                   {{ field.activity_time }}:
-                  {{ activities[index].activity_time }}
+                  {{ activityDialog.activity_time }}
                 </h2>
               </v-card-text>
               <v-card-text>
                 <h2>
                   {{ field.scheduledPower }}:
-                  {{ activities[index].scheduledPower }}
+                  {{ activityDialog.scheduledPower }}
                 </h2>
               </v-card-text>
               <v-card-text>
                 <h2>
                   {{ field.activity_goal }}:
-                  {{ activities[index].activity_goal }}
+                  {{ activityDialog.activity_goal }}
                 </h2>
               </v-card-text>
               <v-card-text>
                 <h2>
                   {{ field.activity_approver }}:
-                  {{ activities[index].activity_approver }}
+                  {{ activityDialog.activity_approver }}
                 </h2>
               </v-card-text>
               <v-card-text>
-                <h2>{{ field.place }}: {{ activities[index].place }}</h2>
+                <h2>{{ field.place }}: {{ activityDialog.place }}</h2>
               </v-card-text>
             </div>
             <v-card-actions>
@@ -106,6 +118,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+      activityDialog: {},
       newActivity: false,
       dialog: false,
       fields: [
@@ -138,8 +151,9 @@ export default {
       });
   },
   methods: {
-    enterActivity() {
+    async enterActivity(activity) {
       this.dialog = true;
+      this.activityDialog = activity;
     },
     returnActivities() {
       this.dialog = false;
