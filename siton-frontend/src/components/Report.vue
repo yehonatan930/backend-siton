@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  props: ['event_name', 'event_time_date', 'event_time']
+  props: ["event_name", "event_time_date", "event_time"]
 };
 </script>
 

@@ -3,7 +3,7 @@
     <h1 class="display-3 d-flex justify-center" id="title">
       לוח דיווחים
     </h1>
-    <div class="d-flex justify-center mr-15">
+    <div class="d-flex justify-center">
       <v-card class="mt-5 rounded-xl inner-card" elevation="1">
         <div v-for="report in this.reports" :key="report.id">
           <Report
@@ -16,18 +16,18 @@
         </div>
       </v-card>
       <div>
-        <v-dialog v-model="this.dialog" persistent max-width="500">
+        <v-dialog v-model="this.dialog" persistent max-width="800">
           <v-card>
             <div
-              dir="rtl"
+              class="ma-5"
               v-for="field in this.fields"
               :key="field.activity_name"
             >
-              <v-card-title dir="rtl" class="headline">
-                <h3 id="titleDialog">
+              <v-card-title class="headline">
+                <h3 id="titleDialog" class="display-1">
                   {{ reportDialog.event_name }}
-                </h3></v-card-title
-              >
+                </h3>
+              </v-card-title>
 
               <v-card-text>
                 <h2>
@@ -66,12 +66,17 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
-                color="blue darken-4"
-                class="font-weight-bold"
-                text
+                large
+                bottom
+                left
+                rounded
+                dark
+                color="#3e4174"
                 @click="returnReports()"
-                ><h2>סגור</h2></v-btn
               >
+                <v-icon dark>mdi-arrow-left</v-icon>
+                חזור
+              </v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>

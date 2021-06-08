@@ -1,7 +1,7 @@
 <template>
   <div height="150">
-    <v-list class="transparent mt-10" >
-      <v-list-item >
+    <v-list class="transparent mt-10">
+      <v-list-item>
         <v-list-item-title>
           <h1 class="text-right">{{this.activity_name}}</h1>
         </v-list-item-title>
@@ -18,7 +18,7 @@
 
 <script>
 export default {
-    props: ['activity_name', 'activity_time']
+  props: ["activity_name", "activity_time"]
 };
 </script>
 
@@ -26,5 +26,4 @@ export default {
 #title {
   color: #3e4174;
 }
-
 </style>

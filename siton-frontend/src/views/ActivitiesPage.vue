@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="display-3 d-flex justify-center mr-15" id="title">
+    <h1 class="display-3 d-flex justify-center" id="title">
       לוח פעילויות
     </h1>
     <div class="d-flex justify-center">
@@ -36,17 +36,10 @@
       <div>
         <NewActivity :newActivity="this.newActivity" @newActivity="close">
         </NewActivity>
-        <v-dialog
-          v-model="this.dialog"
-          max-width="800"
-          height="800"
-          persistent
-          class="dialog"
-        >
+        <v-dialog v-model="this.dialog" max-width="800" persistent>
           <v-card>
             <div
               class="ma-5"
-              dir="rtl"
               v-for="field in this.fields"
               :key="field.activity_name"
             >
@@ -103,24 +96,26 @@
                 large
                 left
                 bottom
-                fab
+                rounded
                 dark
                 color="#3e4174"
                 @click="returnActivities()"
               >
                 <v-icon dark>mdi-gavel</v-icon>
+                הוצאה לפועל
               </v-btn>
 
               <v-btn
                 large
                 bottom
                 left
-                fab
+                rounded
                 dark
                 color="#3e4174"
                 @click="returnActivities()"
               >
                 <v-icon dark>mdi-arrow-left</v-icon>
+                חזור
               </v-btn>
             </v-card-actions>
           </v-card>
