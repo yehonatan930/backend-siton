@@ -30,15 +30,16 @@
           :key="option.title"
           link
           :to="option.link"
+          class="nav-item"
         >
+          <v-list-item-icon>
+            <v-icon>{{ option.icon }}</v-icon>
+          </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>
               <h3>{{ option.title }}</h3>
             </v-list-item-title>
           </v-list-item-content>
-          <v-list-item-icon>
-            <v-icon>{{ option.icon }}</v-icon>
-          </v-list-item-icon>
         </v-list-item>
       </v-list-item-group>
     </v-list>
@@ -68,5 +69,9 @@ export default {
 <style scoped>
 .drawer {
   width: 30vw;
+}
+
+.nav-item {
+  padding-right: 1vw;
 }
 </style>
