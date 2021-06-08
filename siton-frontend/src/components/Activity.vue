@@ -3,12 +3,12 @@
     <v-list class="transparent mt-10" >
       <v-list-item >
         <v-list-item-title>
-          <h2 class="text-right">{{this.activity_name}}</h2>
+          <h1 class="text-right">{{this.activity_name}}</h1>
         </v-list-item-title>
         <v-list-item-subtitle class="text-left"
-          ><h2>
+          ><h1>
             {{this.activity_time}}
-          </h2>
+          </h1>
         </v-list-item-subtitle>
       </v-list-item>
       <v-divider></v-divider>

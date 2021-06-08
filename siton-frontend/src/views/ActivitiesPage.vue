@@ -51,7 +51,7 @@
               :key="field.activity_name"
             >
               <v-card-title dir="rtl" class="headline">
-                <h3 id="titleDialog" class="display-1">
+                <h3 id="titleDialog" class="display-1 font-weight-bold">
                   {{ activityDialog.activity_name }}
                 </h3></v-card-title
               >
@@ -69,7 +69,11 @@
                 </h2>
               </v-card-text>
               <v-card-text>
-                <h2>
+                <h2 v-if="activityDialog.scheduledPower">
+                  {{ field.scheduledPower }}:
+                  {{ activityDialog.scheduledPower}}
+                </h2>
+                <h2 v-else>
                   {{ field.scheduledPower }}:
                   {{ activityDialog.scheduledPower }}
                 </h2>
@@ -87,7 +91,10 @@
                 </h2>
               </v-card-text>
               <v-card-text>
-                <h2>{{ field.place }}: {{ activityDialog.place }}</h2>
+                <h2>
+                  {{ field.place }}: {{ activityDialog.lat }},
+                  {{ activityDialog.lon }}
+                </h2>
               </v-card-text>
             </div>
             <v-card-actions>

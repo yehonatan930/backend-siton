@@ -107,7 +107,7 @@
           ></v-text-field>
 
           <v-text-field
-            v-model="activity.loaction"
+            v-model="activity.location"
             :rules="[
               v => !!v || 'צריך להזין מיקום!',
               v => /\d+,\d+/.test(v) || 'צריך להזין מיקום תקני!'
@@ -190,7 +190,9 @@ export default {
               scheduledPower: this.activity.plannedForce.split(","),
               activity_goal: this.activity.activity_goal,
               activity_approver: this.activity.activity_approver,
-              status: 1
+              status: 1,
+              lat: this.activity.location.split(",")[0],
+              lon: this.activity.location.split(",")[1]
             }
           }
         )

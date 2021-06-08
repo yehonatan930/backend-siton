@@ -50,13 +50,13 @@
               <v-card-text>
                 <h2>
                   {{ field.casualties }}:
-                  {{ reportDialog.activity_goal }}
+                  {{ reportDialog.casualties }}
                 </h2>
               </v-card-text>
               <v-card-text>
                 <h2>
                   {{ field.weapon }}:
-                  {{ reportDialog.activity_approver }}
+                  {{ reportDialog.weapon_type }}
                 </h2>
               </v-card-text>
               <v-card-text>
