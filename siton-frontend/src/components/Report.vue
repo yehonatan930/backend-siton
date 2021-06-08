@@ -3,12 +3,10 @@
     <v-list class="transparent mt-10">
       <v-list-item>
         <v-list-item-title>
-          <h2 class="text-right">{{this.event_name}}</h2>
+          <h1 class="text-right">{{ this.event_name }}</h1>
         </v-list-item-title>
-        <v-list-item-subtitle class="text-left"
-          ><h2>
-            {{this.event_time_date}} {{this.event_time}}
-          </h2>
+        <v-list-item-subtitle class="text-left">
+          <h1>{{ this.event_time_date }} {{ this.event_time }}</h1>
         </v-list-item-subtitle>
       </v-list-item>
       <v-divider></v-divider>
@@ -18,7 +16,7 @@
 
 <script>
 export default {
-  props: ['event_name', 'event_time_date', 'event_time']
+  props: ["event_name", "event_time_date", "event_time"]
 };
 </script>
 
