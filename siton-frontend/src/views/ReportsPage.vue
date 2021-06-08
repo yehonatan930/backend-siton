@@ -1,7 +1,9 @@
 <template>
   <div>
-    <h1 class="display-4 d-flex justify-center" id="title">דיווחים</h1>
-    <div class="d-flex justify-center inner-container">
+    <h1 class="display-4 d-flex justify-center" id="title">
+      דיווחים
+    </h1>
+    <div class="d-flex justify-center">
       <v-card class="mt-5 rounded-xl inner-card" elevation="1">
         <Report @click.native="enterReport()"> </Report>
       </v-card>

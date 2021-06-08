@@ -4,7 +4,7 @@
       לוח פעילויות
     </h1>
     <div class="d-flex justify-center mr-15">
-      <v-card width="700" height="300" class="mt-5 rounded-xl">
+      <v-card class="mt-5 rounded-xl inner-card" elevation="1">
         <!-- <v-virtual-scroll
           :items="this.activities"
           :item-height="150"
@@ -171,5 +171,10 @@ export default {
 <style>
 #titleDialog {
   color: #3e4174;
+}
+
+.inner-card {
+  width: 60vw;
+  height: 65vh;
 }
 </style>
