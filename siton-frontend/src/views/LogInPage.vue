@@ -36,7 +36,6 @@
                     id="login-btn"
                     rounded
                     color="#292b64"
-                    type="submit"
                     @click="sendLogIn()"
                   >
                     התחבר
@@ -63,24 +62,24 @@ export default {
   },
   methods: {
     async sendLogIn() {
-      this.$emit("logIn");
-      await axios
+      const status = await axios
         .post(
-          "http://siton-backend-securityapp3.apps.openforce.openforce.biz/users/login",
+          "http://siton-backend-securityapp3.apps.openforce.openforce.biz/users/login/policeStation",
           {
             userName: this.userName,
             password: this.password
           }
         )
         .then(function(response) {
-          console.log(response.data);
-          if (response.status(200)) {
-            this.$emit("logIn");
-          }
+          return response.status;
         })
         .catch(function(error) {
           console.log(error);
         });
+
+      if (status == 200) {
+        this.$emit("logIn");
+      }
     }
   }
 };
