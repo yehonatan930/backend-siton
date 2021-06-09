@@ -81,13 +81,14 @@
             ></v-time-picker>
           </v-menu>
 
-          <v-text-field
+          <v-select
             v-model="activity.plannedForce"
+            :items="this.users"
+            :menu-props="{ maxHeight: '20%' }"
             :rules="[v => !!v || 'צריך להזין כוח מתוכנן!']"
             label="כוח מתוכנן"
-            required
-            clearable
-          ></v-text-field>
+            multiple
+          ></v-select>
 
           <v-text-field
             v-model="activity.activity_goal"
@@ -200,7 +201,7 @@ export default {
               activity_type:
                 this.activityKinds.indexOf(this.activity.activity_type) + 1,
               activity_time: new Date(this.activity.date),
-              scheduledPower: this.activity.plannedForce.split(","),
+              scheduledPower: this.activity.plannedForce,
               activity_goal: this.activity.activity_goal,
               activity_approver: this.activity.activity_approver,
               status: 1,

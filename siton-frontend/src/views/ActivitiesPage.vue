@@ -171,6 +171,14 @@ export default {
       this.dialog = true;
       this.activityDialog = activity;
       this.activityDialog.place = `${this.activityDialog.lat}, ${this.activityDialog.lon}`;
+      this.activityDialog.activity_time =
+        this.activityDialog.activity_time.slice(0, 10) +
+        ", " +
+        this.activityDialog.activity_time.slice(11, 20);
+
+      this.activityDialog.scheduledPower = this.activityDialog.scheduledPower.join(
+        ", "
+      );
     },
     returnActivities() {
       this.dialog = false;
