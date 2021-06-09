@@ -42,7 +42,6 @@ export default {
 
   methods: {
     logIn() {
-      console.log(2222);
       this.login = false;
     }
   }
