@@ -12,7 +12,7 @@
     </v-container>
 
     <div class="d-flex justify-center">
-      <v-card class="rounded-xl inner-card" elevation="1">
+      <v-card id="activities-card" class="rounded-xl" elevation="1">
         <div class="scrollable">
           <div v-for="activity in this.activities" :key="activity.id">
             <Activity
@@ -171,9 +171,9 @@ export default {
   color: #3e4174;
 }
 
-.inner-card {
+#activities-card {
   width: 85% !important;
-  height: 65vh !important;
+  height: 56.7vh !important;
 }
 
 .scrollable {

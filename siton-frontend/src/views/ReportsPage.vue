@@ -4,7 +4,7 @@
       לוח דיווחים
     </h1>
     <div class="d-flex justify-center">
-      <v-card class="mt-5 rounded-xl inner-card" elevation="1">
+      <v-card id="reports-card" class="mt-5 rounded-xl" elevation="1">
         <div class="scrollable">
           <div v-for="report in this.reports" :key="report.id">
             <Report
@@ -143,12 +143,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #titleDialog {
   color: #3e4174;
 }
 
-.inner-card {
+#reports-card {
   width: 85% !important;
   height: 65vh !important;
 }
