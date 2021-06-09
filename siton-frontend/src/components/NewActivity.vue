@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-dialog persistent v-model="this.newActivity" width="700">
-      <v-card width="700" class="mt-5 rounded-xl d-flex justify-center">
+    <v-dialog persistent v-model="this.newActivity" width="36%">
+      <v-card class="rounded-xl d-flex justify-center">
         <v-form ref="form" v-model="valid" lazy-validation class="ma-4">
           <v-text-field
             v-model="activity.activity_name"
@@ -60,8 +60,7 @@
             :return-value.sync="activity.time"
             transition="scale-transition"
             offset-y
-            max-width="290px"
-            min-width="290px"
+            max-width="300%"
           >
             <template v-slot:activator="{ on, attrs }">
               <v-text-field

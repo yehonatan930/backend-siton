@@ -20,7 +20,7 @@
         </div>
       </v-card>
       <div>
-        <v-dialog v-model="this.dialog" persistent max-width="800">
+        <v-dialog v-model="this.dialog" persistent max-width="40%">
           <v-card>
             <div
               class="ma-5"
@@ -149,12 +149,12 @@ export default {
 }
 
 .inner-card {
-  width: 60vw;
-  height: 65vh;
+  width: 85% !important;
+  height: 65vh !important;
 }
 
 .scrollable {
   overflow-y: scroll;
-  height: 65vh;
+  height: inherit;
 }
 </style>
