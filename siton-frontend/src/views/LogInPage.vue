@@ -74,7 +74,9 @@ export default {
         )
         .then(function(response) {
           console.log(response.data);
-          this.$emit("logIn");
+          if (response.status(200)) {
+            this.$emit("logIn");
+          }
         })
         .catch(function(error) {
           console.log(error);
