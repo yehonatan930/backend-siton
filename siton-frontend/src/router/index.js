@@ -8,7 +8,7 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    path: "/activities",
     name: "Activities",
     component: Activities
   },
@@ -18,7 +18,7 @@ const routes = [
     component: Map
   },
   {
-    path: "/reports",
+    path: "/",
     name: "Reports",
     component: Reports
   }

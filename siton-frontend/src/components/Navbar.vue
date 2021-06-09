@@ -11,7 +11,11 @@
       <v-list-item-content class="text-center">
         <v-list-item-avatar height="10.5vw" width="10.5vw">
           <img v-if="user.photo != null" id="user-img" :src="user.photo" />
-          <img v-else id="user-img" src="../assets/1003762901001399640360no.jpg" />
+          <img
+            v-else
+            id="user-img"
+            src="../assets/1003762901001399640360no.jpg"
+          />
         </v-list-item-avatar>
         <v-list-item-title class="font-weight-bold">
           <h1>{{ user.user_name }}</h1>
@@ -54,10 +58,10 @@ export default {
         {
           title: "לוח פעילויות",
           icon: "mdi-clipboard-text",
-          link: "/"
+          link: "/activities"
         },
         { title: "מפה", icon: "mdi-map", link: "/map" },
-        { title: "דיווחים", icon: "mdi-cellphone-nfc", link: "/reports" }
+        { title: "דיווחים", icon: "mdi-cellphone-nfc", link: "/" }
       ]
     };
   },

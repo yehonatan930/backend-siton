@@ -81,7 +81,7 @@
                 rounded
                 dark
                 color="#3e4174"
-                @click="returnActivities()"
+                @click="executeActivities()"
               >
                 <v-icon dark>mdi-gavel</v-icon>
                 הוצאה לפועל
@@ -130,7 +130,7 @@ export default {
       activities: [],
       sortSelectItems: [
         { hebrewLabel: "תאריך", fieldName: "activity_time" },
-        { hebrewLabel: "סטטוס", fieldName: "activity_type" }
+        { hebrewLabel: "סטטוס", fieldName: "status_name" }
       ],
       sortSelected: ""
     };
@@ -195,8 +195,22 @@ export default {
       await this.getActivities();
     },
     addToList(activity) {
-      console.log("new activity: " + activity);
       this.activities.push(activity);
+    },
+    async executeActivities() {
+      const changedActivity = await axios
+        .patch(
+          `http://siton-backend-securityapp3.apps.openforce.openforce.biz/activities/start/${this.activityDialog.id}`
+        )
+        .then(function(response) {
+          return response.data;
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+
+      this.getActivities();
+      this.returnActivities();
     }
   }
 };
