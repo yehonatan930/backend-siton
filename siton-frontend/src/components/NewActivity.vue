@@ -225,4 +225,9 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.v-form {
+  width: 90%;
+  padding-top: 5%;
+}
+</style>
