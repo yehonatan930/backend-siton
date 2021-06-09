@@ -12,7 +12,7 @@
           ></v-text-field>
           <v-select
             v-model="activity.activity_type"
-            :items="activityKinds"
+            :items="this.eventsReports"
             :rules="[v => !!v || 'צריך לבחור פעילות!']"
             label="סוג הפעולה"
             required
@@ -166,7 +166,7 @@ export default {
 
     valid: false,
 
-    activityKinds: ["פטרול", "מארב", "מחסן רכבים"],
+    eventsReports: [],
     places: [
       { placeName: "ברונקס", location: "40,-70" },
       { placeName: "מנהטן", location: "40,-71" },
@@ -180,6 +180,7 @@ export default {
   }),
   mounted: async function() {
     await this.getUsers();
+    await this.getEvents();
   },
   computed: {},
   methods: {
@@ -199,7 +200,7 @@ export default {
             activity: {
               activity_name: this.activity.activity_name,
               activity_type:
-                this.activityKinds.indexOf(this.activity.activity_type) + 1,
+                this.eventsReports.indexOf(this.activity.activity_type) + 1,
               activity_time: new Date(this.activity.date),
               scheduledPower: this.activity.plannedForce,
               activity_goal: this.activity.activity_goal,
@@ -247,6 +248,20 @@ export default {
         });
 
       this.users = this.users.map(user => user.user_name);
+    },
+    async getEvents() {
+      this.eventsReports = await axios
+        .get(
+          "http://siton-backend-securityapp3.apps.openforce.openforce.biz/reports/events"
+        )
+        .then(function(response) {
+          return response.data;
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+
+      this.eventsReports = this.eventsReports.map(event => event.event_name);
     }
   },
   props: ["newActivity"]
