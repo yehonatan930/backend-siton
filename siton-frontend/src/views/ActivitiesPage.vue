@@ -5,8 +5,15 @@
     </h1>
     <v-container fluid>
       <v-row align="center">
-        <v-col cols="2">
-          <v-select :items="selects" label="מייון לפי:" outlined></v-select>
+        <v-col cols="2" offset="1" class="pb-0">
+          <v-select
+            v-model="sortSelected"
+            :items="sortSelectItems"
+            item-text="hebrewLabel"
+            item-value="fieldName"
+            label="מיון לפי:"
+            outlined
+          ></v-select>
         </v-col>
       </v-row>
     </v-container>
@@ -14,12 +21,13 @@
     <div class="d-flex justify-center">
       <v-card id="activities-card" class="rounded-xl" elevation="1">
         <div class="scrollable">
-          <div v-for="activity in this.activities" :key="activity.id">
+          <div v-for="activity in sortedActivities" :key="activity.id">
             <Activity
               :activity_name="activity.activity_name"
               :activity_time="
-                new Date(activity.activity_time).toLocaleDateString()
+                new Date(activity.activity_time).toLocaleDateString('de-DE')
               "
+              :activity_status="activity.status_name"
               @click.native="enterActivity(activity)"
             >
             </Activity>
@@ -120,7 +128,11 @@ export default {
         place: "מיקום"
       },
       activities: [],
-      selects: ["תאריך", "סטטוס"]
+      sortSelectItems: [
+        { hebrewLabel: "תאריך", fieldName: "activity_time" },
+        { hebrewLabel: "סטטוס", fieldName: "activity_type" }
+      ],
+      sortSelected: ""
     };
   },
   components: {
@@ -130,6 +142,30 @@ export default {
   mounted: async function() {
     await this.getActivities();
   },
+
+  computed: {
+    sortedActivities: function() {
+      if (this.sortSelected) {
+        const toBeSortActivities = this.activities;
+
+        return toBeSortActivities.sort((current, next) => {
+          const currentField = current[this.sortSelected];
+          const nextField = next[this.sortSelected];
+
+          if (currentField < nextField) {
+            return 1;
+          }
+          if (currentField > nextField) {
+            return -1;
+          }
+          return 0;
+        });
+      } else {
+        return this.activities;
+      }
+    }
+  },
+
   methods: {
     async enterActivity(activity) {
       this.dialog = true;
@@ -173,7 +209,7 @@ export default {
 
 #activities-card {
   width: 85% !important;
-  height: 56.7vh !important;
+  height: 56vh !important;
 }
 
 .scrollable {
