@@ -56,7 +56,7 @@ export default {
         {
           title: "לוח פעילויות",
           icon: "mdi-clipboard-text",
-          link: "/activities"
+          link: "/"
         },
         { title: "מפה", icon: "mdi-map", link: "/map" },
         { title: "דיווחים", icon: "mdi-cellphone-nfc", link: "/reports" }
