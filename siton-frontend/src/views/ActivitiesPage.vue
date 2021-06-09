@@ -75,6 +75,7 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
+                v-if="this.activityDialog.status_name == 'מתוכנן'"
                 large
                 left
                 bottom
@@ -85,6 +86,19 @@
               >
                 <v-icon dark>mdi-gavel</v-icon>
                 הוצאה לפועל
+              </v-btn>
+              <v-btn
+                v-if="this.activityDialog.status_name == 'מתרחש עכשיו'"
+                large
+                left
+                bottom
+                rounded
+                dark
+                color="#3e4174"
+                @click="endActivities()"
+              >
+                <v-icon dark>mdi-calendar-check</v-icon>
+                סיים פעולה
               </v-btn>
 
               <v-btn
@@ -209,6 +223,21 @@ export default {
       await axios
         .patch(
           `http://siton-backend-securityapp3.apps.openforce.openforce.biz/activities/start/${this.activityDialog.id}`
+        )
+        .then(function(response) {
+          return response.data;
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+
+      this.getActivities();
+      this.returnActivities();
+    },
+    async endActivities() {
+      await axios
+        .patch(
+          `http://siton-backend-securityapp3.apps.openforce.openforce.biz/activities/end/${this.activityDialog.id}`
         )
         .then(function(response) {
           return response.data;
