@@ -198,7 +198,7 @@ export default {
       this.activities.push(activity);
     },
     async executeActivities() {
-      const changedActivity = await axios
+      await axios
         .patch(
           `http://siton-backend-securityapp3.apps.openforce.openforce.biz/activities/start/${this.activityDialog.id}`
         )
