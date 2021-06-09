@@ -177,7 +177,7 @@ export default {
     },
     async addActivity() {
       this.close();
-      await axios
+      const data = await axios
         .post(
           "http://siton-backend-securityapp3.apps.openforce.openforce.biz/activities",
           {
@@ -196,13 +196,13 @@ export default {
           }
         )
         .then(function(response) {
-          console.log(response.data);
-
-          this.sentActivity(response.data);
+          return response.data;
         })
         .catch(function(error) {
           console.log(error);
         });
+
+      this.sentActivity(data);
     },
     clear() {
       this.activity = {
