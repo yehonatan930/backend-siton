@@ -42,55 +42,17 @@
         </NewActivity>
         <v-dialog v-model="this.dialog" max-width="800" persistent>
           <v-card>
-            <div
-              class="ma-5"
-              v-for="field in this.fields"
-              :key="field.activity_name"
-            >
+            <div class="ma-5">
               <v-card-title dir="rtl" class="headline">
                 <h3 id="titleDialog" class="display-1 font-weight-bold">
                   {{ activityDialog.activity_name }}
                 </h3></v-card-title
               >
 
-              <v-card-text>
+              <v-card-text v-for="(hebrew, english) in fields" :key="english">
                 <h2>
-                  {{ field.activity_type }}:
-                  {{ activityDialog.activity_type }}
-                </h2>
-              </v-card-text>
-              <v-card-text>
-                <h2>
-                  {{ field.activity_time }}:
-                  {{ activityDialog.activity_time }}
-                </h2>
-              </v-card-text>
-              <v-card-text>
-                <h2 v-if="activityDialog.scheduledPower">
-                  {{ field.scheduledPower }}:
-                  {{ activityDialog.scheduledPower }}
-                </h2>
-                <h2 v-else>
-                  {{ field.scheduledPower }}:
-                  {{ activityDialog.scheduledPower }}
-                </h2>
-              </v-card-text>
-              <v-card-text>
-                <h2>
-                  {{ field.activity_goal }}:
-                  {{ activityDialog.activity_goal }}
-                </h2>
-              </v-card-text>
-              <v-card-text>
-                <h2>
-                  {{ field.activity_approver }}:
-                  {{ activityDialog.activity_approver }}
-                </h2>
-              </v-card-text>
-              <v-card-text>
-                <h2>
-                  {{ field.place }}: {{ activityDialog.lat }},
-                  {{ activityDialog.lon }}
+                  {{ hebrew }}:
+                  {{ activityDialog[english] }}
                 </h2>
               </v-card-text>
             </div>
@@ -140,16 +102,15 @@ export default {
       activityDialog: {},
       newActivity: false,
       dialog: false,
-      fields: [
-        {
-          activity_type: "סוג פעולה",
-          activity_time: "זמן מתוכנן לפעילות",
-          scheduledPower: "כוח מתוכנן",
-          activity_goal: "מטרת הפעילות",
-          activity_approver: "אישור הפעילות",
-          place: "מיקום"
-        }
-      ],
+      fields: {
+        status_name: "מצב הפעולה",
+        activity_type: "סוג פעולה",
+        activity_time: "זמן מתוכנן לפעילות",
+        scheduledPower: "כוח מתוכנן",
+        activity_goal: "מטרת הפעילות",
+        activity_approver: "אישור הפעילות",
+        place: "מיקום"
+      },
       activities: []
     };
   },
@@ -164,6 +125,7 @@ export default {
     async enterActivity(activity) {
       this.dialog = true;
       this.activityDialog = activity;
+      this.activityDialog.place = `${this.activityDialog.lat}, ${this.activityDialog.lon}`;
     },
     returnActivities() {
       this.dialog = false;
