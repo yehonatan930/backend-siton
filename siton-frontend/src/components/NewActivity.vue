@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-dialog persistent v-model="this.newActivity" width="700">
-      <v-card width="700" class="mt-5 rounded-xl">
+      <v-card width="700" class="mt-5 rounded-xl d-flex justify-center">
         <v-form ref="form" v-model="valid" lazy-validation class="ma-4">
           <v-text-field
             v-model="activity.activity_name"
