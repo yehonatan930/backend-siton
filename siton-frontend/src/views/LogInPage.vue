@@ -62,7 +62,7 @@ export default {
   },
   methods: {
     async sendLogIn() {
-      const status = await axios
+      const response = await axios
         .post(
           "http://siton-backend-securityapp3.apps.openforce.openforce.biz/users/login/policeStation",
           {
@@ -71,14 +71,14 @@ export default {
           }
         )
         .then(function(response) {
-          return response.status;
+          return response;
         })
         .catch(function(error) {
           console.log(error);
         });
 
-      if (status == 200) {
-        this.$emit("logIn");
+      if (response.status === 200) {
+        this.$emit("logIn", response.data);
       }
     }
   }

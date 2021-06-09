@@ -14,7 +14,7 @@
             elevation="24"
           >
             <router-view class="view" />
-            <Navbar class="rounded-r-xl"></Navbar>
+            <Navbar :user="user" class="rounded-r-xl"></Navbar>
           </v-card>
         </div>
       </div>
@@ -36,13 +36,15 @@ export default {
 
   data() {
     return {
-      login: true
+      login: true,
+      user: {}
     };
   },
 
   methods: {
-    logIn() {
+    logIn(user) {
       this.login = false;
+      this.user = user.user;
     }
   }
 };
