@@ -3,8 +3,16 @@
     <h1 class="display-3 d-flex justify-center" id="title">
       לוח פעילויות
     </h1>
+    <v-container fluid>
+      <v-row align="center">
+        <v-col cols="2">
+          <v-select :items="selects" label="מייון לפי:" outlined></v-select>
+        </v-col>
+      </v-row>
+    </v-container>
+
     <div class="d-flex justify-center">
-      <v-card class="mt-5 rounded-xl inner-card" elevation="1">
+      <v-card class="rounded-xl inner-card" elevation="1">
         <div class="scrollable">
           <div v-for="activity in this.activities" :key="activity.id">
             <Activity
@@ -37,7 +45,7 @@
         <NewActivity
           :newActivity="this.newActivity"
           @newActivity="close()"
-          @activityToAdd="addToList()"
+          @activityToAdd="addToList"
         >
         </NewActivity>
         <v-dialog v-model="this.dialog" max-width="800" persistent>
@@ -111,7 +119,8 @@ export default {
         activity_approver: "אישור הפעילות",
         place: "מיקום"
       },
-      activities: []
+      activities: [],
+      selects: ["תאריך", "סטטוס"]
     };
   },
   components: {
@@ -150,6 +159,7 @@ export default {
       await this.getActivities();
     },
     addToList(activity) {
+      console.log("new activity: " + activity);
       this.activities.push(activity);
     }
   }
