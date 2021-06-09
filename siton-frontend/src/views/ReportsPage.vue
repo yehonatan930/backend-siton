@@ -119,6 +119,7 @@ export default {
   components: {
     Report
   },
+
   methods: {
     enterReport(report) {
       this.dialog = true;
@@ -150,7 +151,7 @@ export default {
 
 #reports-card {
   width: 85% !important;
-  height: 65vh !important;
+  height: 64.5vh !important;
 }
 
 .scrollable {

@@ -3,17 +3,17 @@
     <v-card
       id="cardi"
       width="60vw"
-      height="60vh"
+      height="80%"
       class="rounded-xl"
       elevation="24"
       dark
     >
-      <v-container fluid class="all-container" fill-height>
+      <v-container class="all-container" fill-height>
         <v-row no-gutters fill-height>
-          <v-col cols="6">
+          <v-col cols="6" xs="0" class="image-col">
             <img class="cops-image" src="../assets/cops.jpg" />
           </v-col>
-          <v-col cols="6">
+          <v-col cols="6" xs="12">
             <div id="login-container" class="d-flex align-center flex-column">
               <h1 id="welcome">ברוכים הבאים!</h1>
               <v-form>
@@ -88,7 +88,7 @@ export default {
 <style>
 #cardi {
   background-color: #000d49;
-  margin-top: 17vh;
+  margin-top: 15%;
 }
 
 .all-container {
