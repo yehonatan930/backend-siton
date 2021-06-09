@@ -8,8 +8,8 @@
         <div v-else>
           <v-card
             id="card"
-            width="1700"
-            height="800"
+            width="88.5vw"
+            height="82.5vh"
             class="rounded-xl"
             elevation="24"
           >
@@ -77,11 +77,11 @@ export default {
 
 #card {
   background-color: #f8f9fb;
-  margin-top: 8vh;
+  margin-top: 4.5%;
 }
 
 .view {
-  margin-right: 18vw;
-  padding-top: 5vh;
+  margin-right: 21%;
+  padding-top: 2.8%;
 }
 </style>

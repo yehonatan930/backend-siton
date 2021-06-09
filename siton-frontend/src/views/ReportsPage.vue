@@ -4,7 +4,7 @@
       לוח דיווחים
     </h1>
     <div class="d-flex justify-center">
-      <v-card class="mt-5 rounded-xl inner-card" elevation="1">
+      <v-card id="reports-card" class="mt-5 rounded-xl" elevation="1">
         <div class="scrollable">
           <div v-for="report in this.reports" :key="report.id">
             <Report
@@ -20,7 +20,7 @@
         </div>
       </v-card>
       <div>
-        <v-dialog v-model="this.dialog" persistent max-width="800">
+        <v-dialog v-model="this.dialog" persistent max-width="40%">
           <v-card>
             <div
               class="ma-5"
@@ -143,18 +143,18 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #titleDialog {
   color: #3e4174;
 }
 
-.inner-card {
-  width: 60vw;
-  height: 65vh;
+#reports-card {
+  width: 85% !important;
+  height: 65vh !important;
 }
 
 .scrollable {
   overflow-y: scroll;
-  height: 65vh;
+  height: inherit;
 }
 </style>

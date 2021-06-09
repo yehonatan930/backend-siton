@@ -12,7 +12,7 @@
     </v-container>
 
     <div class="d-flex justify-center">
-      <v-card class="rounded-xl inner-card" elevation="1">
+      <v-card id="activities-card" class="rounded-xl" elevation="1">
         <div class="scrollable">
           <div v-for="activity in this.activities" :key="activity.id">
             <Activity
@@ -48,14 +48,14 @@
           @activityToAdd="addToList"
         >
         </NewActivity>
-        <v-dialog v-model="this.dialog" max-width="800" persistent>
+        <v-dialog v-model="this.dialog" max-width="40%" persistent>
           <v-card>
             <div class="ma-5">
               <v-card-title dir="rtl" class="headline">
                 <h3 id="titleDialog" class="display-1 font-weight-bold">
                   {{ activityDialog.activity_name }}
-                </h3></v-card-title
-              >
+                </h3>
+              </v-card-title>
 
               <v-card-text v-for="(hebrew, english) in fields" :key="english">
                 <h2>
@@ -171,13 +171,13 @@ export default {
   color: #3e4174;
 }
 
-.inner-card {
-  width: 60vw;
-  height: 65vh;
+#activities-card {
+  width: 85% !important;
+  height: 56.7vh !important;
 }
 
 .scrollable {
   overflow-y: scroll;
-  height: 65vh;
+  height: inherit;
 }
 </style>

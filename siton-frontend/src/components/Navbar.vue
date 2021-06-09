@@ -5,11 +5,11 @@
     right
     color="#040848"
     dark
-    width="350"
+    width="20.6%"
   >
     <v-list-item two-line>
       <v-list-item-content class="text-center">
-        <v-list-item-avatar height="200" width="200">
+        <v-list-item-avatar height="10.5vw" width="10.5vw">
           <img
             id="user-img"
             src="https://www.ynet.co.il/PicServer5/2020/06/16/10037634/1003762901001399640360no.jpg"
@@ -67,11 +67,7 @@ export default {
 </script>
 
 <style scoped>
-.drawer {
-  width: 30vw;
-}
-
 .nav-item {
-  padding-right: 1vw;
+  padding-right: 7%;
 }
 </style>
