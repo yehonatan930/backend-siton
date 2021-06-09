@@ -18,15 +18,14 @@
               <h1 id="welcome">ברוכים הבאים!</h1>
               <v-form>
                 <v-text-field
-                  name="login"
+                  v-model="userName"
                   label="שם משתמש"
                   type="text"
                   required
                 >
                 </v-text-field>
                 <v-text-field
-                  id="password"
-                  name="password"
+                  v-model="password"
                   label="סיסמה"
                   type="password"
                   required
@@ -53,10 +52,33 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
+  data() {
+    return {
+      userName: "",
+      password: ""
+    };
+  },
   methods: {
-    sendLogIn() {
+    async sendLogIn() {
       this.$emit("logIn");
+      await axios
+        .post(
+          "http://siton-backend-securityapp3.apps.openforce.openforce.biz/users/login",
+          {
+            userName: this.userName,
+            password: this.password
+          }
+        )
+        .then(function(response) {
+          console.log(response.data);
+          this.$emit("logIn");
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     }
   }
 };
