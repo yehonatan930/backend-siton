@@ -52,7 +52,7 @@
 
 <script>
 import axios from "axios";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 export default {
   data() {
@@ -75,11 +75,11 @@ export default {
           return response;
         })
         .catch(function(error) {
-          Swal.fire({
-            title: "Wrong user!",
-            icon: "error",
-            confirmButtonText: "סגור"
-          });
+          // Swal.fire({
+          //   title: "Wrong user!",
+          //   icon: "error",
+          //   confirmButtonText: "סגור"
+          // });
           console.log(error);
         });
 
