@@ -97,13 +97,13 @@
             clearable
           ></v-text-field>
 
-          <v-text-field
+          <v-select
             v-model="activity.activity_approver"
+            :items="this.users"
             :rules="[v => !!v || 'צריך להזין מאשר פעילות!']"
             label="מאשר הפעילות"
             required
-            clearable
-          ></v-text-field>
+          ></v-select>
 
           <v-text-field
             v-model="activity.location"
@@ -154,7 +154,7 @@ export default {
     activity: {
       name: null,
       date: null,
-      time: null,
+      time: "",
       plannedForce: "",
       activity_goal: null,
       activity_approver: null,
@@ -167,8 +167,12 @@ export default {
 
     valid: false,
 
-    activityKinds: ["פטרול", "מארב", "מחסן רכבים"]
+    activityKinds: ["פטרול", "מארב", "מחסן רכבים"],
+    users: []
   }),
+  mounted: async function() {
+    await this.getUsers();
+  },
   computed: {},
   methods: {
     close() {
@@ -218,6 +222,20 @@ export default {
     },
     sentActivity(data) {
       this.$emit("activityToAdd", data);
+    },
+    async getUsers() {
+      this.users = await axios
+        .get(
+          "http://siton-backend-securityapp3.apps.openforce.openforce.biz/users"
+        )
+        .then(function(response) {
+          return response.data;
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+
+        this.users = this.users.map(user => user.user_name)
     }
   },
   props: ["newActivity"]

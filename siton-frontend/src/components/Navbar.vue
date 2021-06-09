@@ -10,13 +10,11 @@
     <v-list-item two-line>
       <v-list-item-content class="text-center">
         <v-list-item-avatar height="10.5vw" width="10.5vw">
-          <img
-            id="user-img"
-            src="https://www.ynet.co.il/PicServer5/2020/06/16/10037634/1003762901001399640360no.jpg"
-          />
+          <img v-if="user.photo != null" id="user-img" :src="user.photo" />
+          <img v-else id="user-img" src="../assets/1003762901001399640360no.jpg" />
         </v-list-item-avatar>
         <v-list-item-title class="font-weight-bold">
-          <h1>סיטון</h1>
+          <h1>{{ user.user_name }}</h1>
         </v-list-item-title>
       </v-list-item-content>
     </v-list-item>
@@ -62,7 +60,8 @@ export default {
         { title: "דיווחים", icon: "mdi-cellphone-nfc", link: "/reports" }
       ]
     };
-  }
+  },
+  props: ["user"]
 };
 </script>
 
