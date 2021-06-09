@@ -34,7 +34,11 @@
         </template>
       </v-card>
       <div>
-        <NewActivity :newActivity="this.newActivity" @newActivity="close()" @activityToAdd="addToList()">
+        <NewActivity
+          :newActivity="this.newActivity"
+          @newActivity="close()"
+          @activityToAdd="addToList()"
+        >
         </NewActivity>
         <v-dialog v-model="this.dialog" max-width="800" persistent>
           <v-card>
@@ -58,7 +62,6 @@
               <v-card-text>
                 <h2>
                   {{ field.activity_time }}:
-                  {{ activityDialog.activity_time }}
                   {{ activityDialog.activity_time }}
                 </h2>
               </v-card-text>
