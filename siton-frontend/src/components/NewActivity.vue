@@ -197,7 +197,9 @@ export default {
           }
         )
         .then(function(response) {
-          this.$emit("activityToAdd", response.data);
+          console.log(response.data);
+
+          this.sentActivity(response.data);
         })
         .catch(function(error) {
           console.log(error);
@@ -214,6 +216,9 @@ export default {
         activity_type: null,
         location: null
       };
+    },
+    sentActivity(data) {
+      this.$emit("activityToAdd", data);
     }
   },
   props: ["newActivity"]

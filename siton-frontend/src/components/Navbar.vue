@@ -9,10 +9,10 @@
   >
     <v-list-item two-line>
       <v-list-item-content class="text-center">
-        <v-list-item-avatar height="100" width="100">
+        <v-list-item-avatar height="200" width="200">
           <img
             id="user-img"
-            src="https://randomuser.me/api/portraits/women/81.jpg"
+            src="https://www.ynet.co.il/PicServer5/2020/06/16/10037634/1003762901001399640360no.jpg"
           />
         </v-list-item-avatar>
         <v-list-item-title class="font-weight-bold">
