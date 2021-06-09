@@ -105,16 +105,14 @@
             required
           ></v-select>
 
-          <v-text-field
+          <v-select
             v-model="activity.location"
-            :rules="[
-              v => !!v || 'צריך להזין מיקום!',
-              v => /\d+,\d+/.test(v) || 'צריך להזין מיקום תקני!'
-            ]"
+            :items="this.places.map(place => place.placeName)"
+            :rules="[v => !!v || 'צריך להזין מקום!']"
             label="מיקום"
             required
-            clearable
-          ></v-text-field>
+          ></v-select>
+
           <v-flex class="text-left">
             <v-btn
               @click="close()"
@@ -168,6 +166,15 @@ export default {
     valid: false,
 
     activityKinds: ["פטרול", "מארב", "מחסן רכבים"],
+    places: [
+      { placeName: "ברונקס", location: "40,-70" },
+      { placeName: "מנהטן", location: "40,-71" },
+      { placeName: "ברוקלין", location: "39,-70" },
+      { placeName: "קווינס", location: "40,-72" },
+      { placeName: "סטייטן איילנד", location: "41,-71" }
+    ],
+    locationSelect: {},
+
     users: []
   }),
   mounted: async function() {
@@ -181,6 +188,9 @@ export default {
     },
     async addActivity() {
       this.close();
+      this.locationSelect = this.places.find(
+        place => place.placeName === this.activity.location
+      ).location;
       const data = await axios
         .post(
           "http://siton-backend-securityapp3.apps.openforce.openforce.biz/activities",
@@ -194,8 +204,8 @@ export default {
               activity_goal: this.activity.activity_goal,
               activity_approver: this.activity.activity_approver,
               status: 1,
-              lat: this.activity.location.split(",")[0],
-              lon: this.activity.location.split(",")[1]
+              lat: this.locationSelect.split(",")[0],
+              lon: this.locationSelect.split(",")[1]
             }
           }
         )
@@ -235,7 +245,7 @@ export default {
           console.log(error);
         });
 
-        this.users = this.users.map(user => user.user_name)
+      this.users = this.users.map(user => user.user_name);
     }
   },
   props: ["newActivity"]
