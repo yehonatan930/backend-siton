@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Activities from "../views/ActivitiesPage";
 import Map from "../views/MapPage";
 import Reports from "../views/ReportsPage.vue";
+import AboutSiton from "../views/AboutSitonPage.vue";
 
 Vue.use(VueRouter);
 
@@ -21,6 +22,11 @@ const routes = [
     path: "/",
     name: "Reports",
     component: Reports
+  },
+  {
+    path: "/aboutSiton",
+    name: "AboutSiton",
+    component: AboutSiton
   }
 ];
 

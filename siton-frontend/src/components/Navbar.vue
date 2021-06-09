@@ -61,7 +61,12 @@ export default {
           link: "/activities"
         },
         { title: "מפה", icon: "mdi-map", link: "/map" },
-        { title: "דיווחים", icon: "mdi-cellphone-nfc", link: "/" }
+        { title: "דיווחים", icon: "mdi-cellphone-nfc", link: "/" },
+        {
+          title: "על מדור סיטון",
+          icon: "mdi-emoticon-poop",
+          link: "/aboutSiton"
+        }
       ]
     };
   },
