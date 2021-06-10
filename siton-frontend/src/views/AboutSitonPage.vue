@@ -12,9 +12,11 @@
     <br />
     <p>חברי המדור היפים, המדהימים, המוכשרים, הגאונים:</p>
     <p class="main-credits">
-      ג'וני, שי"ש, גלי פ***** גרשטיין, ענבי, וובון, ועודד ז"ל
+      ג'וני, שי"ש, גלי פ***** גרשטיין, ענבי, וובון, ועודד
     </p>
+    <span class="main-credits text-decoration-line-through">ז"ל</span>
     <p>בתפקיד אורח: מיכאל</p>
+    <img src="../assets/us.jpg" class="us-jpg" />
   </div>
 </template>
 
@@ -31,6 +33,7 @@ export default {
 
 .main-credits {
   font-size: 2em;
+  display: inline;
 }
 
 .small-credits {
@@ -39,5 +42,10 @@ export default {
 
 .sub-head-credits {
   font-size: 1.5em;
+}
+
+.us-jpg {
+  height: 50%;
+  width: 20%;
 }
 </style>
